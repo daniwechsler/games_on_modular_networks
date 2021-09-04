@@ -1,11 +1,14 @@
 """
 This python script can be used to create a configuration file with
-which the C++ model 'games_on_graphs' can be parametrized.
+which the C++ model 'games_on_graphs' can be parameterized.
 
 Once the configuration file (by default config.txt) is created, the
 model can be started as following (type in terminal):
 
-./games_on_graphs -c config.txt
+./games_on_graphs -c PATH_TO_CONFIG_FILE
+
+While PATH_TO_CONFIG_FILE is the path to the configuration file created by
+this script.
 """
 
 import numpy
@@ -188,16 +191,16 @@ def createNetwork(N, num_modules, L_in, L_out):
 # of the mode (games_on_graphs)
 ##########################################################
 config_file = 'config.txt'
-N = 40
-num_modules = 4
-L_in = 40
-L_out = 9
-S = ['C'] * N   # Initial strategies of the N individuals (C=Cooperator, D=Defector)
-S[0] = 'D'
-T = 100
-b = 1.5
-sampleTime = 10
-randomSeed = 100
+N = 40			# Number of nodes
+num_modules = 4		# Number of modules
+L_in = 40		# Number of links in each module
+L_out = 9		# Number of links between each pair of modules [note L_out % (num_modules-1) == 0 must hold]
+S = ['C'] * N   	# Initial strategies of the N individuals (C=Cooperator, D=Defector)
+S[0] = 'D'		# Place invading cheater
+T = 100			# Number of time steps to simulate
+b = 1.5			# Cheating advantage
+sampleTime = 10		# T-sampleTime iterations are printed
+randomSeed = 100	# Random seed
 
 # Create a network with N nodes, num_module modules,
 # with each module having L_in edges, and L_out edges
